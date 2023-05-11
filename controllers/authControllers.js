@@ -132,6 +132,8 @@ const decodeToken = (req, res) => {
     const { token } = req.body;
     try {
         //Write your code here
+         const payload = jwt.verify(token, process.env.JWT_SECRET);
+    res.status(200).json({ payload, status: 'Success' });
     } catch (err) {
         console.error(err);
         res.status(401).json({ message: 'Invalid token' });
